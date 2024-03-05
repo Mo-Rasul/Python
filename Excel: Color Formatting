@@ -1,0 +1,31 @@
+import openpyxl
+from openpyxl.styles import NamedStyle, PatternFill
+from openpyxl.worksheet.table import Table, TableStyleInfo
+
+def apply_preset_style(filePP):
+    # Load the Excel workbook
+    wb = openpyxl.load_workbook(filePP)
+
+    # Get the active sheet
+    sheet = wb.active
+    
+    # Define a NamedStyle with the desired formatting attributes for the header
+    header_style = NamedStyle(name="Header_Style11")
+    header_style.fill = PatternFill(start_color="0E74BF", end_color="FFFFFF", fill_type="solid")  # Blue fill color
+    header_style.font = openpyxl.styles.Font(color="FFFFFF", bold=True)  # White bold font color for header
+    header_style.alignment = Alignment(horizontal='center', vertical='center')  # Center align text
+
+    
+    # Apply the NamedStyle to the first row (header)
+    for cell in sheet[1]:
+        cell.style = header_style
+    
+    # Enable filters for the first row
+    sheet.auto_filter.ref = sheet.dimensions
+
+    # Save the modified workbook
+    wb.save(file_path)
+
+# Example usage
+filePP = r'FILEPATH'
+apply_preset_style(file_path)
