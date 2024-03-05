@@ -1,0 +1,30 @@
+##Always Needed
+import pandas as pd
+import numpy as np
+import os
+
+##list of what I can pull
+os.listdir()
+
+##pulling excel file
+TABLE = pd.read_excel(r'file')
+executions.head()
+
+###Data Types
+column_types = TABLE.dtypes
+print(column_types)
+
+###Replace
+TABLE['COLUMN'] = TABLE['COLUMN'].str.replace("ZZZ", 'Null')
+TABLE.head()
+
+###Print Duplicates
+#print(TABLE['COLUMN'].drop_duplicates().head())
+
+### Drop Duplicates
+TABLE.drop_duplicates(subset=['COLUMN'], inplace=True)
+TABLE.head()
+
+###Split Column: rename both splits = column.str.split (Delimieter,occurance,expand true to bring in remaining)
+TABLE[['COLUMN', 'COLUMN']]=TABLE['COLUMN'].str.split(" ", n=1, expand=True)
+TABLE.head()
